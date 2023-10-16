@@ -16,4 +16,4 @@ for key, val in os.environ.items():
     ]:
         print(key, "     ", val)
     elif "PULLREQUEST" in key or "PULL_REQUEST" in key:
-        print(key, "     ", val)
+        print(key, "    ", val)

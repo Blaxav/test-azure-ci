@@ -15,4 +15,8 @@ steps:
     echo $(BUILD_SOURCEVERSION)
     echo Now python
     python main.py
+    echo targeted commit:
+    git fetch origin main
+    git rev-list --reverse origin/main --max-count 1
+    git show a94deba08529f05ca4b43d7a7c89b02f086d1729
   displayName: 'Run a multi-line script'

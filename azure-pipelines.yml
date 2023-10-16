@@ -5,14 +5,12 @@
 
 trigger:
 - main
+- other_branch
 
 pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
 - script: |
     echo $(BUILD_SOURCEVERSION)
     echo Now python

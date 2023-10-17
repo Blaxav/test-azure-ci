@@ -3,18 +3,16 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-- main
-
-pool:
-  vmImage: ubuntu-latest
-
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo $(BUILD_SOURCEVERSION)
-    echo Now python
-    python main.py
-  displayName: 'Run a multi-line script'
+jobs:
+  - job: GitGuardianShield
+    pool:
+      vmImage: 'ubuntu-latest'
+    container: gitguardian/ggshield:latest
+    steps:
+      - script: |
+          echo $(BUILD_SOURCEVERSION)
+          echo Now python
+          python main.py
+          ggshield secret scan ci
+        env:
+          GITGUARDIAN_API_KEY: $(gitguardianApiKey)

@@ -11,9 +11,8 @@ jobs:
     steps:
       - script: |
           git branch -a
-          git pull
-          git rev-list --reverse HEAD --max-count 3
-          git show HEAD~1
+          git fetch origin azure-pipelines
+          git rev-list --reverse origin/azure-pipelines --max-count 3
           ggshield sca scan ci -v
         env:
           GITGUARDIAN_API_KEY: $(gitguardianApiKey)

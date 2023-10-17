@@ -3,18 +3,15 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-- main
-
-pool:
-  vmImage: ubuntu-latest
-
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo $(BUILD_SOURCEVERSION)
-    echo Now python
-    python main.py
-  displayName: 'Run a multi-line script'
+jobs:
+  - job: GitGuardianShield
+    pool:
+      vmImage: 'ubuntu-latest'
+    container: xblanchotgg/ggshield:latest
+    steps:
+      - checkout: self
+        fetchDepth: 2 # Required to allow scanning last commit in push events
+      - script: |
+          ggshield sca scan ci -v
+        env:
+          GITGUARDIAN_API_KEY: $(gitguardianApiKey)

@@ -10,9 +10,12 @@ jobs:
     container: xblanchotgg/ggshield:latest
     steps:
       - script: |
-          git branch -a
+          echo branch azure
           git fetch origin azure-pipelines
           git rev-list --reverse origin/azure-pipelines --max-count 3
+          echo main
+          git fetch origin main
+          git rev-list --reverse origin/main
           ggshield sca scan ci -v
         env:
           GITGUARDIAN_API_KEY: $(gitguardianApiKey)

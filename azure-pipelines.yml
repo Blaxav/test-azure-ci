@@ -7,8 +7,13 @@ jobs:
   - job: GitGuardianShield
     pool:
       vmImage: 'ubuntu-latest'
-    container: gitguardian/ggshield:latest
+    container: xblanchotgg/ggshield:latest
     steps:
-      - script: ggshield sca scan ci -v
+      - script: |
+          git branch -a
+          git pull
+          git rev-list --reverse HEAD --max-count 3
+          git show HEAD~1
+          ggshield sca scan ci -v
         env:
           GITGUARDIAN_API_KEY: $(gitguardianApiKey)

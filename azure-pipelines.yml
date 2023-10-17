@@ -12,7 +12,7 @@ jobs:
       - script: |
           echo branch azure
           git fetch origin azure-pipelines
-          git rev-list --reverse origin/azure-pipelines --max-count 3
+          git rev-list --reverse origin/azure-pipelines
           echo main
           git fetch origin main
           git rev-list --reverse origin/main

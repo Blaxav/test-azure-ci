@@ -9,10 +9,6 @@ jobs:
       vmImage: 'ubuntu-latest'
     container: gitguardian/ggshield:latest
     steps:
-      - script: |
-          echo $(BUILD_SOURCEVERSION)
-          echo Now python
-          python main.py
-          ggshield secret scan ci
+      - script: ggshield sca scan ci -v
         env:
           GITGUARDIAN_API_KEY: $(gitguardianApiKey)

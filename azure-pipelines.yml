@@ -16,6 +16,9 @@ jobs:
           echo main
           git fetch origin main
           git rev-list --reverse origin/main
+          echo other
+          git fetch origin other_branch
+          git rev-list --reverse origin/other_branch
           ggshield sca scan ci -v
         env:
           GITGUARDIAN_API_KEY: $(gitguardianApiKey)

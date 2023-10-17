@@ -10,7 +10,7 @@ jobs:
     container: xblanchotgg/ggshield:latest
     steps:
       - checkout: self
-        fetchDepth: 2
+        fetchDepth: 2 # Required to allow scanning last commit in push events
       - script: |
           ggshield sca scan ci -v
         env:

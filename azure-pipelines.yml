@@ -9,16 +9,9 @@ jobs:
       vmImage: 'ubuntu-latest'
     container: xblanchotgg/ggshield:latest
     steps:
+      - checkout: self
+        fetchDepth: 2
       - script: |
-          echo branch azure
-          git fetch origin azure-pipelines
-          git rev-list --reverse origin/azure-pipelines
-          echo main
-          git fetch origin main
-          git rev-list --reverse origin/main
-          echo other
-          git fetch origin other_branch
-          git rev-list --reverse origin/other_branch
           ggshield sca scan ci -v
         env:
           GITGUARDIAN_API_KEY: $(gitguardianApiKey)
